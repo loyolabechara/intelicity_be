@@ -25,7 +25,7 @@ SECRET_KEY = 'o&(9_7b5j0+ups!o%39eidk3153p_yhh@gf0u^t+*t#-)aq%th'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["127.0.0.1", "192.168.0.196"]
+ALLOWED_HOSTS = ["127.0.0.1", "be.intelicity.com.br"]
 
 
 # Application definition
@@ -84,8 +84,8 @@ DATABASES = {
         'NAME': 'intelicity',
         'PORT': '',
 
-        'USER': 'root',
-        'PASSWORD': 'xxxxx',
+        'USER': 'intelicity',
+        'PASSWORD': 'p5mn4xp6zh3d',
         'HOST': '127.0.0.1',
     }
 }
@@ -155,3 +155,5 @@ REST_FRAMEWORK = {
 #     'JWT_AUTH_HEADER_PREFIX': 'JWT',
 #     'JWT_EXPIRATION_DELTA': datetime.timedelta(seconds=300)
 # }
+
+STATIC_ROOT = '/home/intelicity/public_html/intelicity_be/accounts/static'
