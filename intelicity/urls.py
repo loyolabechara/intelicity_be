@@ -30,7 +30,8 @@ urlpatterns = [
     path('api/login', login),
     path('api/sampleapi', sample_api),
     path('usuarios/', views.UsuarioList.as_view()),
-    path('cidades/', views.CidadeList.as_view()),
-    path('bairros/', views.BairroList.as_view()),
+    path('estados/', views.EstadoList.as_view()),
+    path('cidades/<int:id>', views.CidadeList.as_view()),
+    path('bairros/<int:id>', views.BairroList.as_view()),
 #    path('login/', obtain_jwt_token),
 ]

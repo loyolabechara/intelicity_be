@@ -1,6 +1,6 @@
-from accounts.serializers import UserSerializer, GroupSerializer, UsuarioSerializer, CidadeSerializer, BairroSerializer
+from accounts.serializers import UserSerializer, GroupSerializer, UsuarioSerializer, EstadoSerializer, CidadeSerializer, BairroSerializer
 from rest_framework import viewsets
-from accounts.models import Usuario, Cidade, Bairro
+from accounts.models import Usuario, Estado, Cidade, Bairro
 from django.contrib.auth.models import User, Group
 
 from rest_framework import status
@@ -86,12 +86,29 @@ class UsuarioList(APIView):
 
 # /////////////////////////////////
 
+class EstadoList(APIView):
+    """
+    List all estados, or create a new estado.
+    """
+    def get(self, request, format=None):
+        estados = Estado.objects.all()
+        serializer_context = {
+            'request': request
+        }
+
+        serializer = EstadoSerializer(estados, many=True, context=serializer_context)
+#        serializer = EstadoSerializer(estados, context=serializer_context)
+        return Response(serializer.data)
+
+
+# /////////////////////////////////
+
 class CidadeList(APIView):
     """
     List all cidades, or create a new cidade.
     """
-    def get(self, request, format=None):
-        cidades = Cidade.objects.all()
+    def get(self, request, id, format=None):
+        cidades = Cidade.objects.filter(estado=id)
         serializer_context = {
             'request': request
         }
@@ -107,8 +124,8 @@ class BairroList(APIView):
     """
     List all bairros, or create a new bairro.
     """
-    def get(self, request, format=None):
-        bairros = Bairro.objects.all()
+    def get(self, request, id, format=None):
+        bairros = Bairro.objects.filter(cidade=id)
         serializer_context = {
             'request': request
         }
