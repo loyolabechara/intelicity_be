@@ -107,8 +107,8 @@ class BairroList(APIView):
     """
     List all bairros, or create a new bairro.
     """
-    def get(self, request, format=None):
-        bairros = Bairro.objects.all()
+    def get(self, request, pk, format=None):
+        bairros = Bairro.objects.filter(cidade_id=pk)
         serializer_context = {
             'request': request
         }

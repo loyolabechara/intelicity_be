@@ -25,7 +25,7 @@ SECRET_KEY = 'o&(9_7b5j0+ups!o%39eidk3153p_yhh@gf0u^t+*t#-)aq%th'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["127.0.0.1", "be.intelicity.com.br"]
+ALLOWED_HOSTS = ["127.0.0.1", "be.intelicity.com.br", "192.168.1.163"]
 
 
 # Application definition
