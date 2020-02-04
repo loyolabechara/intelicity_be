@@ -14,9 +14,13 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 from .views import login, sample_api
 from . import views
+
+
+admin.site.site_header = "Intelicity"
+admin.site.site_title = "Intelicity"
 
 """
 from django.conf.urls import url
@@ -30,7 +34,15 @@ urlpatterns = [
     path('api/login', login),
     path('api/sampleapi', sample_api),
     path('usuarios/', views.UsuarioList.as_view()),
-    path('cidades/', views.CidadeList.as_view()),
-    path('bairros/<int:pk>', views.BairroList.as_view()),
+
+#    path('cidades/', views.CidadeList.as_view()),
+#    path('bairros/<int:pk>', views.BairroList.as_view()),
+
+    path('estados/', views.EstadoList.as_view()),
+    path('cidades/<int:id>', views.CidadeList.as_view()),
+    path('bairros/<int:id>', views.BairroList.as_view()),
+    # Defesa Civil
+#    path('dcivil/', include('dcivil.urls')),
+    path('dcivil/', include('dcivil.urls', namespace='dcivil')),
 #    path('login/', obtain_jwt_token),
 ]

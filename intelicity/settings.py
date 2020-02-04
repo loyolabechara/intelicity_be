@@ -32,6 +32,7 @@ ALLOWED_HOSTS = ["127.0.0.1", "be.intelicity.com.br", "192.168.1.163"]
 
 INSTALLED_APPS = [
     'accounts.apps.AccountsConfig',
+    'dcivil.apps.DcivilConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -132,6 +133,7 @@ STATIC_URL = '/static/'
 # DRF JWT
 
 REST_FRAMEWORK = {
+    'DATETIME_FORMAT': "%d/%m/%Y - %H:%M:%S",
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework.authentication.TokenAuthentication',
     ),

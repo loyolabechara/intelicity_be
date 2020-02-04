@@ -1,8 +1,7 @@
 from django.contrib import admin
-from .models import Usuario, Cidade, Bairro
+from .models import Usuario, Estado, Cidade, Bairro
 
 # Register your models here.
-
 
 class UsuarioAdmin(admin.ModelAdmin):
     list_display = ['user','cpf','celular', 'bairro', 'dt_nascimento', 'dt_inclusao']
@@ -11,8 +10,15 @@ class UsuarioAdmin(admin.ModelAdmin):
 
 admin.site.register(Usuario, UsuarioAdmin)
 
-class CidadeAdmin(admin.ModelAdmin):
+class EstadoAdmin(admin.ModelAdmin):
     list_display = ['nome']
+    search_fields = ['nome']
+
+admin.site.register(Estado, EstadoAdmin)
+
+class CidadeAdmin(admin.ModelAdmin):
+    list_display = ['estado', 'nome']
+    list_filter = ['estado']
     search_fields = ['nome']
 
 admin.site.register(Cidade, CidadeAdmin)

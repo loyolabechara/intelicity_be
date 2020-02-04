@@ -1,6 +1,6 @@
-from accounts.serializers import UserSerializer, GroupSerializer, UsuarioSerializer, CidadeSerializer, BairroSerializer
+from accounts.serializers import UserSerializer, GroupSerializer, UsuarioSerializer, EstadoSerializer, CidadeSerializer, BairroSerializer
 from rest_framework import viewsets
-from accounts.models import Usuario, Cidade, Bairro
+from accounts.models import Usuario, Estado, Cidade, Bairro
 from django.contrib.auth.models import User, Group
 
 from rest_framework import status
@@ -72,7 +72,12 @@ class UsuarioList(APIView):
     def post(self, request, format=None):
         serializer = UsuarioSerializer(data=request.data)
  
+        print ('antes do valid')
+
         if serializer.is_valid():
+            print ('dentro do valid')
+            print('id:', request.POST.get('user_id'))
+            print('cpf:', request.POST.get('cpf'))
             usuario = User.objects.get(id=request.POST.get('user_id'))
             bairro = Bairro.objects.get(id=request.POST.get('bairro_id'))
 
@@ -86,18 +91,33 @@ class UsuarioList(APIView):
 
 # /////////////////////////////////
 
-class CidadeList(APIView):
+class EstadoList(APIView):
     """
-    List all cidades, or create a new cidade.
+    Lista todos os estados
     """
     def get(self, request, format=None):
-        cidades = Cidade.objects.all()
+        estados = Estado.objects.all()
+        serializer_context = {
+            'request': request
+        }
+
+        serializer = EstadoSerializer(estados, many=True, context=serializer_context)
+        return Response(serializer.data)
+
+
+# /////////////////////////////////
+
+class CidadeList(APIView):
+    """
+    Lista todas as cidades de um estado
+    """
+    def get(self, request, id, format=None):
+        cidades = Cidade.objects.filter(estado=id)
         serializer_context = {
             'request': request
         }
 
         serializer = CidadeSerializer(cidades, many=True, context=serializer_context)
-#        serializer = CidadeSerializer(cidades, context=serializer_context)
         return Response(serializer.data)
 
 
@@ -105,14 +125,13 @@ class CidadeList(APIView):
 
 class BairroList(APIView):
     """
-    List all bairros, or create a new bairro.
+    Lista todos os bairros de uma cidade
     """
-    def get(self, request, pk, format=None):
-        bairros = Bairro.objects.filter(cidade_id=pk)
+    def get(self, request, id, format=None):
+        bairros = Bairro.objects.filter(cidade=id)
         serializer_context = {
             'request': request
         }
 
         serializer = BairroSerializer(bairros, many=True, context=serializer_context)
-#        serializer = CidadeSerializer(cidades, context=serializer_context)
         return Response(serializer.data)
