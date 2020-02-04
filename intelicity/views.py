@@ -72,7 +72,12 @@ class UsuarioList(APIView):
     def post(self, request, format=None):
         serializer = UsuarioSerializer(data=request.data)
  
+        print ('antes do valid')
+
         if serializer.is_valid():
+            print ('dentro do valid')
+            print('id:', request.POST.get('user_id'))
+            print('cpf:', request.POST.get('cpf'))
             usuario = User.objects.get(id=request.POST.get('user_id'))
             bairro = Bairro.objects.get(id=request.POST.get('bairro_id'))
 
