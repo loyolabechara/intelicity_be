@@ -33,6 +33,8 @@ ALLOWED_HOSTS = ["127.0.0.1", "be.intelicity.com.br", "192.168.1.163"]
 INSTALLED_APPS = [
     'accounts.apps.AccountsConfig',
     'dcivil.apps.DcivilConfig',
+    'agenda.apps.AgendaConfig',
+    'bemprego.apps.BempregoConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

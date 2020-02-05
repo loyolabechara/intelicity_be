@@ -44,5 +44,7 @@ urlpatterns = [
     # Defesa Civil
 #    path('dcivil/', include('dcivil.urls')),
     path('dcivil/', include('dcivil.urls', namespace='dcivil')),
+    path('agenda/', include('agenda.urls', namespace='agenda')),
+    path('bemprego/', include('bemprego.urls', namespace='bemprego')),
 #    path('login/', obtain_jwt_token),
 ]

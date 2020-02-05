@@ -30,4 +30,4 @@ class PontoApoioSerializer(serializers.ModelSerializer):
     class Meta:
         model = Ponto_Apoio
         depth=1
-        fields = ['nome', 'diretor', 'dirigente', 'responsavel', 'celular', 'email', 'endereco', 'numero', 'complemento', 'bairro', 'capacidade', 'latitude', 'longitude']
+        fields = ['id', 'nome', 'diretor', 'dirigente', 'responsavel', 'celular', 'email', 'endereco', 'numero', 'complemento', 'bairro', 'capacidade', 'latitude', 'longitude']

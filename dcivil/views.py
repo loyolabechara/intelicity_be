@@ -38,8 +38,12 @@ class SituacoesList(APIView):
         return Response(serializer.data)
 
 class PontosApoioList(APIView):
-    def get(self, request, format=None):
-        pontos = Ponto_Apoio.objects.all().order_by('nome')
+    def get(self, request, id, format=None):
+        if id == 0:
+            pontos = Ponto_Apoio.objects.all().order_by('nome')
+        else:
+            pontos = Ponto_Apoio.objects.filter(id = id).order_by('nome')
+
         serializer_context = {
             'request': request
         }

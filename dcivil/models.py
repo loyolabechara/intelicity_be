@@ -13,7 +13,7 @@ class Dirigente(models.Model):
         ordering = ['nome']
 
     nome = models.CharField(max_length=120)
-    celular = models.CharField(max_length=11)
+    celular = models.CharField(max_length=11, blank=True, null=True)
     user = models.OneToOneField(User, on_delete=models.CASCADE, blank=True, null=True)
     dt_inclusao = models.DateTimeField(auto_now_add=True)
 
@@ -27,7 +27,7 @@ class Responsavel(models.Model):
         verbose_name = "Responsável"
 
     nome = models.CharField(max_length=120)
-    celular = models.CharField(max_length=11)
+    celular = models.CharField(max_length=11, blank=True, null=True)
     user = models.OneToOneField(User, on_delete=models.CASCADE, blank=True, null=True)
     dt_inclusao = models.DateTimeField(auto_now_add=True)
 
@@ -44,7 +44,8 @@ class Ponto_Apoio(models.Model):
     diretor = models.CharField(max_length=60, blank=True, null=True)
     dirigente = models.ManyToManyField(Dirigente, blank=True)
     responsavel = models.ManyToManyField(Responsavel, blank=True)
-    celular = models.CharField(max_length=11)
+    celular = models.CharField(max_length=11, blank=True, null=True)
+    telefone = models.CharField(max_length=10, blank=True, null=True)
     email = models.EmailField(blank=True, null=True, max_length=120)
     endereco = models.CharField(max_length=120)
     numero = models.CharField(max_length=120)
