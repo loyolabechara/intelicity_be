@@ -91,6 +91,7 @@ class CidadeList(APIView):
     List all cidades, or create a new cidade.
     """
     def get(self, request, format=None):
+        print ("entrou aqui")
         cidades = Cidade.objects.all()
         serializer_context = {
             'request': request
