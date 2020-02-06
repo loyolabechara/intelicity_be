@@ -5,13 +5,25 @@ from .functions import validate_CPF
 
 # Create your models here.
 
+class Estado(models.Model):
+    def __str__(self):
+        return self.nome
+
+    class Meta:
+        ordering = ['nome']
+
+    nome = models.CharField(max_length=30)
+    sigla = models.CharField(max_length=2)
+    dt_inclusao = models.DateTimeField(auto_now_add=True)
+
 class Cidade(models.Model):
     def __str__(self):
         return self.nome
 
     class Meta:
-        ordering = ('nome',)
+        ordering = ['nome']
 
+    estado = models.ForeignKey(Estado, on_delete=models.PROTECT)
     nome = models.CharField(max_length=30)
     dt_inclusao = models.DateTimeField(auto_now_add=True)
 
@@ -45,7 +57,7 @@ class Usuario(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     cpf = models.CharField(unique=True, max_length=11, validators=[validate_CPF])
     celular = models.CharField(max_length=11)
-    email = models.CharField(unique = True, blank=True, null=True, max_length=120)
+#    email = models.CharField(unique = True, blank=True, null=True, max_length=120)
     sexo = models.CharField(max_length=1, choices=SEXO)
     endereco = models.CharField(max_length=120, blank=True, null=True)
     numero = models.CharField(max_length=60, blank=True, null=True)
