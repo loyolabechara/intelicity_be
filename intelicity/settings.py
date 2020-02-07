@@ -135,7 +135,7 @@ STATIC_URL = '/static/'
 # DRF JWT
 
 REST_FRAMEWORK = {
-    'DATETIME_FORMAT': "%d/%m/%Y - %H:%M:%S",
+    'DATETIME_FORMAT': "%d/%m/%Y - %H:%M",
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework.authentication.TokenAuthentication',
     ),
