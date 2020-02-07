@@ -130,8 +130,6 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
-STATIC_URL = '/static/'
-
 # DRF JWT
 
 REST_FRAMEWORK = {
@@ -161,3 +159,6 @@ REST_FRAMEWORK = {
 # }
 
 STATIC_ROOT = '/home/intelicity/public_html/intelicity_be/accounts/static'
+
+STATIC_URL = '/static/'
+
