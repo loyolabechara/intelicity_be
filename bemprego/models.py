@@ -8,7 +8,7 @@ class Escolaridade(models.Model):
         return self.descricao
 
     class Meta:
-        ordering = ['descricao']
+        ordering = ['id']
 
     descricao = models.CharField(max_length=120)
     dt_inclusao = models.DateTimeField(auto_now_add=True)
@@ -32,7 +32,7 @@ class Vaga(models.Model):
         ('M', 'Masculino'),
     )
 
-    def __str__(self):
+    def __int__(self):
         return self.cargo
 
     class Meta:

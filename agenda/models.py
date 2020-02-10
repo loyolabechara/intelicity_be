@@ -17,7 +17,7 @@ class Assunto(models.Model):
 
 # TODO: Colocar repetição na agenda
 
-class Agenda(models.Model):
+class Evento(models.Model):
     def __str__(self):
         return self.titulo
 

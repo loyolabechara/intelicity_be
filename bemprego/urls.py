@@ -4,6 +4,6 @@ from . import views
 app_name='bemprego'
 
 urlpatterns = [
-#    path('assuntos/', views.AssuntosList.as_view()),
-#    path('agendas/', views.AgendasList.as_view()),
+    path('escolaridades/', views.EscolaridadesList.as_view()),
+    path('vagas/<int:escolaridade>', views.VagasList.as_view()),
 ]

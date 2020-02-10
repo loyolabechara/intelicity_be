@@ -2,8 +2,8 @@ from django.shortcuts import render
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
-from agenda.models import Assunto, Agenda
-from agenda.serializers import AssuntoSerializer, AgendaSerializer
+from agenda.models import Assunto, Evento
+from agenda.serializers import AssuntoSerializer, EventoSerializer
 
 # Create your views here.
 
@@ -13,13 +13,13 @@ class AssuntosList(APIView):
         serializer = AssuntoSerializer(assuntos, many=True)
         return Response(serializer.data)
 
-class AgendasList(APIView):
-    def get(self, request, format=None):
-        agendas = Agenda.objects.all()
+class EventosList(APIView):
+    def get(self, request, assunto, format=None):
+        eventos = Evento.objects.filter(assunto=assunto)
 
         serializer_context = {
             'request': request
         }
 
-        serializer = AgendaSerializer(agendas, many=True, context=serializer_context)
+        serializer = EventoSerializer(eventos, many=True, context=serializer_context)
         return Response(serializer.data)

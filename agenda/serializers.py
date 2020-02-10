@@ -1,14 +1,14 @@
 from rest_framework import serializers
 
-from .models import Assunto, Agenda
+from .models import Assunto, Evento
 
 class AssuntoSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Assunto
         fields = ['id', 'descricao']
 
-class AgendaSerializer(serializers.ModelSerializer):
+class EventoSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Agenda
+        model = Evento
         depth=1
         fields = ['id', 'titulo', 'descricao', 'assunto', 'dt_evento']

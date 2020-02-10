@@ -5,5 +5,5 @@ app_name='agenda'
 
 urlpatterns = [
     path('assuntos/', views.AssuntosList.as_view()),
-    path('agendas/', views.AgendasList.as_view()),
+    path('eventos/<int:assunto>', views.EventosList.as_view()),
 ]
