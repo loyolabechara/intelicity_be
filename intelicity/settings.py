@@ -35,6 +35,7 @@ INSTALLED_APPS = [
     'dcivil.apps.DcivilConfig',
     'agenda.apps.AgendaConfig',
     'bemprego.apps.BempregoConfig',
+    'comum.apps.ComumConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
