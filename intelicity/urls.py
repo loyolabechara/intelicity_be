@@ -47,5 +47,6 @@ urlpatterns = [
     path('agenda/', include('agenda.urls', namespace='agenda')),
     path('bemprego/', include('bemprego.urls', namespace='bemprego')),
     path('comum/', include('comum.urls', namespace='comum')),
+    path('solicitacao/', include('solicitacao.urls', namespace='solicitacao')),
 #    path('login/', obtain_jwt_token),
 ]
