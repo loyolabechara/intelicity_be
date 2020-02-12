@@ -10,7 +10,7 @@ class Escolaridade(models.Model):
     class Meta:
         ordering = ['id']
 
-    descricao = models.CharField(max_length=120)
+    descricao = models.CharField(unique=True, max_length=120)
     dt_inclusao = models.DateTimeField(auto_now_add=True)
 
 
@@ -21,7 +21,7 @@ class Cargo(models.Model):
     class Meta:
         ordering = ['nome']
 
-    nome = models.CharField(max_length=120)
+    nome = models.CharField(unique=True, max_length=120)
     dt_inclusao = models.DateTimeField(auto_now_add=True)
 
 

@@ -63,7 +63,7 @@ class Alerta(models.Model):
     class Meta:
         ordering = ['id']
 
-    estagio = models.CharField(max_length=120)
+    estagio = models.CharField(unique=True, max_length=120)
     descricao = models.CharField(max_length=2000)
     dt_inclusao = models.DateTimeField(auto_now_add=True)
 

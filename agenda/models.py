@@ -11,7 +11,7 @@ class Assunto(models.Model):
     class Meta:
         ordering = ['descricao']
 
-    descricao = models.CharField(max_length=120)
+    descricao = models.CharField(unique=True, max_length=120, verbose_name='Assunto')
     user = models.ManyToManyField(User)
     dt_inclusao = models.DateTimeField(auto_now_add=True)
 
@@ -25,7 +25,7 @@ class Evento(models.Model):
         ordering = ['dt_evento', 'titulo']
 
     titulo = models.CharField(max_length=120)
-    descricao = models.TextField(max_length=2000, blank=True, null=True)
+    descricao = models.TextField(max_length=2000, blank=True, null=True, verbose_name='Descrição')
     assunto = models.ForeignKey(Assunto, on_delete=models.PROTECT)
     dt_evento = models.DateTimeField('Data:')
     user = models.ForeignKey(User, on_delete=models.PROTECT)

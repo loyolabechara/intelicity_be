@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     'agenda.apps.AgendaConfig',
     'bemprego.apps.BempregoConfig',
     'comum.apps.ComumConfig',
+    'solicitacao.apps.SolicitacaoConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

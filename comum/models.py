@@ -18,7 +18,7 @@ class Categoria_Telefone(models.Model):
         verbose_name = "Categoria de Telefone"
 
 
-    descricao = models.CharField(max_length=120)
+    descricao = models.CharField(unique=True, max_length=120)
     user = models.ManyToManyField(User)
     dt_inclusao = models.DateTimeField(auto_now_add=True)
 
