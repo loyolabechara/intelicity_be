@@ -15,7 +15,6 @@ class AssuntoSolicitacao(models.Model):
         verbose_name = "Assunto"
 
     descricao = models.CharField(unique=True, max_length=120, verbose_name='Descrição')
-    user = models.ForeignKey(User, on_delete=models.PROTECT)
     dt_inclusao = models.DateTimeField(auto_now_add=True)
 
 
@@ -51,5 +50,5 @@ class Solicitacao(models.Model):
     latitude = models.FloatField(blank=True, null=True)
     longitude = models.FloatField(blank=True, null=True)
     user = models.ForeignKey(User, on_delete=models.PROTECT)
-    situacao = models.ForeignKey(Situacao, on_delete=models.PROTECT)
+    situacao = models.ForeignKey(Situacao, on_delete=models.PROTECT, default=1)
     dt_inclusao = models.DateTimeField(auto_now_add=True)
