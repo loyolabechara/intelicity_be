@@ -33,7 +33,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/login', login),
     path('api/sampleapi', sample_api),
-    path('usuarios/', views.UsuarioList.as_view()),
+#    path('usuarios/', views.UsuarioList.as_view()),
 
 #    path('cidades/', views.CidadeList.as_view()),
 #    path('bairros/<int:pk>', views.BairroList.as_view()),
@@ -48,5 +48,6 @@ urlpatterns = [
     path('bemprego/', include('bemprego.urls', namespace='bemprego')),
     path('comum/', include('comum.urls', namespace='comum')),
     path('solicitacao/', include('solicitacao.urls', namespace='solicitacao')),
+    path('accounts/', include('accounts.urls', namespace='accounts')),
 #    path('login/', obtain_jwt_token),
 ]

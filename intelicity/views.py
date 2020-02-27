@@ -53,41 +53,6 @@ class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all().order_by('-date_joined')
     serializer_class = UserSerializer
 
-# /////////////////////////////////
-
-class UsuarioList(APIView):
-    """
-    List all usuarios, or create a new usuario.
-    """
-    def get(self, request, format=None):
-        usuarios = Usuario.objects.all()
-        serializer_context = {
-            'request': request
-        }
-
-        serializer = UsuarioSerializer(usuarios, many=True, context=serializer_context)
-#        serializer = CidadeSerializer(cidades, context=serializer_context)
-        return Response(serializer.data)
-
-    def post(self, request, format=None):
-        serializer = UsuarioSerializer(data=request.data)
- 
-        print ('antes do valid')
-
-        if serializer.is_valid():
-            print ('dentro do valid')
-            print('id:', request.POST.get('user_id'))
-            print('cpf:', request.POST.get('cpf'))
-            usuario = User.objects.get(id=request.POST.get('user_id'))
-            bairro = Bairro.objects.get(id=request.POST.get('bairro_id'))
-
-            tmp = serializer.save(user=usuario, bairro=bairro)
-#                        temp_ocorrencia = form.save(commit=False)
-#            tmp.user = 1
-            tmp.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
 
 # /////////////////////////////////
 
