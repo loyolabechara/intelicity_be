@@ -16,12 +16,6 @@ class GroupSerializer(serializers.HyperlinkedModelSerializer):
         fields = ['name']
 
 class UsuarioSerializer(serializers.ModelSerializer):
-
-#    serializers.chave = '123'
-#    serializers.cinema = 'http://127.0.0.1:8000/cinema/1/'
-#    chave = '123'
-#    serializers.CharField(source='chave') = '123'
-
     class Meta:
         model = Usuario
     #        fields = '__all__'

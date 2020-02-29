@@ -41,18 +41,41 @@ class UsuarioList(APIView):
     def post(self, request, format=None):
         serializer = UsuarioSerializer(data=request.data)
  
-        print ('antes do valid')
-
         if serializer.is_valid():
             print ('dentro do valid')
-            print('id:', request.POST.get('user_id'))
             print('cpf:', request.POST.get('cpf'))
-            usuario = User.objects.get(id=request.POST.get('user_id'))
+
+            user = User.objects.create_user(request.POST.get('cpf'), request.POST.get('email'), 'fk#gjdfp%je*j43')
+
+            # Update fields and then save again
+            user.first_name = request.POST.get('nome')
+            user.last_name = ''
+            user.save()
+
+            token = Token.objects.create(user=user)
+            print(token.key)
+
             bairro = Bairro.objects.get(id=request.POST.get('bairro_id'))
 
-            tmp = serializer.save(user=usuario, bairro=bairro)
-#                        temp_ocorrencia = form.save(commit=False)
-#            tmp.user = 1
-            tmp.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
+            cpf = request.POST.get('cpf')
+
+            usuario = Usuario(user=user, cpf=cpf,
+                celular=request.POST.get('celular'),
+                sexo=request.POST.get('sexo'),
+                endereco=request.POST.get('endereco'),
+                numero=request.POST.get('numero'),
+                complemento=request.POST.get('complemento'),
+                bairro=bairro,
+                cep=request.POST.get('cep'),
+                dt_nascimento=request.POST.get('dt_nascimento')
+            )
+            usuario.save()
+
+#            print('id:', user.id)
+#            print('data:', serializer.data)
+
+            content = {'id': user.id, 'token': token.key}
+            return Response(content, status=status.HTTP_201_CREATED)
+
+#            return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
